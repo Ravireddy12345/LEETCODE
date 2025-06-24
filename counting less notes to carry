@@ -1,0 +1,7 @@
+a=int(input("Enter an Amount in Rupees:"))
+notes=(500,200,100,50,20,10,5,2,1)
+for i in notes:
+   if a>=i:
+      count=a//i
+      a=a%i
+      print(f"{i}x{count}={i*count}")
