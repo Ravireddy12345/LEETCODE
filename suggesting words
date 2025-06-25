@@ -1,0 +1,21 @@
+import difflib
+
+words = []
+print("Enter 5 words:")
+for i in range(5):
+    words.append(input(f"{i+1}. "))
+
+while True:
+    w = input("Enter your word: ")
+    if w == "exit":
+        break
+    if w in words:
+        print("Correct word!")
+    else:
+        match = difflib.get_close_matches(w, words, n=1, cutoff=0.6)
+        if match:
+            print(f'Did you mean? "{match[0]}"')
+        else:
+            print("No similar word found.")
+
+
