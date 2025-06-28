@@ -1,0 +1,27 @@
+import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.chart import PieChart, Reference
+import os
+overs = list(range(1, 11))
+score = [10, 15, 20, 14, 25, 36, 53, 105, 17, 41]
+filename = 'india_score_with_pie_chart.xlsx'
+df = pd.DataFrame({'Over': overs, 'Score': score})
+df.to_excel(filename, index=False)
+wb = load_workbook(filename)
+ws = wb.active
+pie = PieChart()
+pie.title = "India's Score Distribution (Pie Chart)"
+data = Reference(ws, min_col=2, min_row=1, max_row=11)
+labels = Reference(ws, min_col=1, min_row=2, max_row=11)
+pie.add_data(data, titles_from_data=True)
+pie.set_categories(labels)
+ws.add_chart(pie, "D2")
+wb.save(filename)
+os.startfile(filename)
+
+
+
+
+
+
+
